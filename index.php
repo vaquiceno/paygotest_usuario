@@ -13,25 +13,23 @@
 
 <div class="container">
   <div class="well">
-	<form class="form-horizontal">
-		<div class="form-group">
-	  	<input class="col-sm-12" type="file" id="exampleInputFile"> 
-	  </div> 
+	<form class="form-horizontal" action="db/saveCSV.php" method="post" enctype="multipart/form-data">
 	  <div class="form-group">
-	    <div class="col-sm-6">
-	      <input type="number" min="1" class="form-control" id="inputEmail3" placeholder="número de registros" disabled>
+	  	<input class="col-sm-5" type="file" name="file" accept=".csv" required> 
+	    <div class="col-sm-2">
+	      <input value="1" type="number" name="number" min="1" class="form-control" placeholder="número de registros" required>
 	    </div>
-	    <div class="col-sm-6">
-	      <select class="form-control">
-	     	 	<option value="" selected disabled>Orden</option>
+	    <label class="col-sm-2 control-label">Orden:</label>
+	    <div class="col-sm-3">
+	      	<select class="form-control" name="option" required>
 	     	 	<option value="A">Ascendente</option>
 	     	 	<option value="D">Descendente</option>
-				</select>
+			</select>
 	    </div>
-	  </div>
+	  </div> 
 	  <div class="form-group">
 	    <div class="col-sm-offset-5 col-sm-2">
-	      <button type="submit" class="btn btn-default" style="width:100%;">Procesar</button>
+	      <button type="submit" name="submit" class="btn btn-default" style="width:100%;">Procesar</button>
 	    </div>
 	  </div>
 	</form>
