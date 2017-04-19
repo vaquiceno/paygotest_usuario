@@ -11,11 +11,12 @@ class Database{
  
     public function __construct(){
         // Set DSN
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ";charset=latin1";
         // Set options
         $options = array(
             PDO::ATTR_PERSISTENT    => true,
-            PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION
+            PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
         // Create a new PDO instanace
         try{
@@ -29,6 +30,7 @@ class Database{
 
     public function InsertUserDataCSV($arr, $number){
         try {
+            $this->conn->exec("SET NAMES latin1");
             $stmt = $this->conn->prepare("INSERT INTO user (name, lastname)
             VALUES (:name, :lastname)");
             $stmt->bindParam(':name', $name);
@@ -42,6 +44,18 @@ class Database{
                 $stmt->execute();
                 $i++;
             }
+        } catch(PDOException $e) {
+            die("Ocurrio el siguiente error al procesar la transaccion: " . $e->getMessage());
+        }        
+    }
+
+    public function SelectUserData(){
+        try {
+            $this->conn->exec("SET NAMES utf8");
+            $stmt = $this->conn->prepare("SELECT * FROM user");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll();
+            return $resultado;
         } catch(PDOException $e) {
             die("Ocurrio el siguiente error al procesar la transaccion: " . $e->getMessage());
         }        
