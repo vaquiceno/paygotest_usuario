@@ -8,14 +8,26 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+	  function getId(){
+	  	if ($("input[name=id]:checked").val() == undefined){
+	  		alert("selecciona una opción primero");
+	  		return;	  		
+	  	}
+	  	$id = $("input[name=id]:checked").val();
+	  	var kids = $("#"+$id).children();
+	  	$("#algo").text(kids[1].textContent);
+	  	$('#modalEdit').modal('show');
+	  }
+  </script>
 </head>
 <body style="padding-top: 60px;">
 
 <div class="container">
   <div class="well">
-  	  	<form action="db/saveCSV.php" method="post">
+  	  	<form action="db/deleteUser.php" method="post">
   	      <button type="submit" name="submit" class="col-xs-2 col-xs-offset-2 btn btn-default">Eliminar</button>
-	  	  <button type="button" class="col-xs-2 col-xs-offset-1 btn btn-default" data-toggle="modal" data-target="#modalEdit">Editar</button>
+	  	  <button type="button" class="col-xs-2 col-xs-offset-1 btn btn-default" onclick="getId()">Editar</button>
 	  	  <a type="button" class="col-xs-2 col-xs-offset-1 btn btn-default" href="/paygotest_usuario/">Cargar nuevo CVS</a>
 		  <table class="table">
 		    <thead>
@@ -27,13 +39,13 @@
 		    </thead>
 		    <tbody>
 		    {foreach name=outer item=row from=$arr}
-		    	<tr>
+		    	<tr id="{$row.id}">
 		    	{foreach item=item from=$row}
 		    		<td> {$item}</td>
 			    {/foreach}
 			    <td>
 			    	<div class="radio">
-					  <label><input type="radio" name="optradio" value="{$row.id}"></label>
+					  <label><input type="radio" name="id" value="{$row.id}" required></label>
 					</div>
 			    </td>
 			    </tr>
@@ -50,7 +62,7 @@
 			      <button type="button" class="close" data-dismiss="modal">&times;</button>
 			      <h4 class="modal-title">Modal Header</h4>
 			    </div>
-			    <div class="modal-body">
+			    <div id = "algo" class="modal-body">
 			      <p>Some text in the modal.</p>
 			    </div>
 			    <div class="modal-footer">

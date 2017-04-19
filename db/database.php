@@ -70,6 +70,16 @@ class Database{
         }        
     }
 
+    public function DeleteUniqueUser($id){
+        try {
+            $stmt = $this->conn->prepare("DELETE from user where id=:id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch(PDOException $e) {
+            die("Ocurrio el siguiente error al procesar la transaccion: " . $e->getMessage());
+        }        
+    }
+
     public function ResetAutoIncrement(){
         try {
             $stmt = $this->conn->prepare("ALTER TABLE user AUTO_INCREMENT = 1");

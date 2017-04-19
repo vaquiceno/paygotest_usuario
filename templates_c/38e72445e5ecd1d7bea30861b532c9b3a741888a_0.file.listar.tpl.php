@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-04-19 09:03:06
+/* Smarty version 3.1.31, created on 2017-04-19 09:49:25
   from "C:\xampp\htdocs\paygotest_usuario\templates\listar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_58f70baa7d85b2_59882139',
+  'unifunc' => 'content_58f716855ddb63_46592030',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '38e72445e5ecd1d7bea30861b532c9b3a741888a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\paygotest_usuario\\templates\\listar.tpl',
-      1 => 1492585384,
+      1 => 1492588158,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_58f70baa7d85b2_59882139 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58f716855ddb63_46592030 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,14 +36,28 @@ function content_58f70baa7d85b2_59882139 (Smarty_Internal_Template $_smarty_tpl)
   <?php echo '<script'; ?>
  src="js/bootstrap.min.js"><?php echo '</script'; ?>
 >
+  <?php echo '<script'; ?>
+ type="text/javascript">
+	  function getId(){
+	  	if ($("input[name=id]:checked").val() == undefined){
+	  		alert("selecciona una opción primero");
+	  		return;	  		
+	  	}
+	  	$id = $("input[name=id]:checked").val();
+	  	var kids = $("#"+$id).children();
+	  	$("#algo").text(kids[1].textContent);
+	  	$('#modalEdit').modal('show');
+	  }
+  <?php echo '</script'; ?>
+>
 </head>
 <body style="padding-top: 60px;">
 
 <div class="container">
   <div class="well">
-  	  	<form action="db/saveCSV.php" method="post">
+  	  	<form action="db/deleteUser.php" method="post">
   	      <button type="submit" name="submit" class="col-xs-2 col-xs-offset-2 btn btn-default">Eliminar</button>
-	  	  <button type="button" class="col-xs-2 col-xs-offset-1 btn btn-default" data-toggle="modal" data-target="#modalEdit">Editar</button>
+	  	  <button type="button" class="col-xs-2 col-xs-offset-1 btn btn-default" onclick="getId()">Editar</button>
 	  	  <a type="button" class="col-xs-2 col-xs-offset-1 btn btn-default" href="/paygotest_usuario/">Cargar nuevo CVS</a>
 		  <table class="table">
 		    <thead>
@@ -60,7 +74,8 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 ?>
-		    	<tr>
+		    	<tr id="<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
+">
 		    	<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value, 'item');
 if ($_from !== null) {
@@ -76,8 +91,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 
 			    <td>
 			    	<div class="radio">
-					  <label><input type="radio" name="optradio" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
-"></label>
+					  <label><input type="radio" name="id" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
+" required></label>
 					</div>
 			    </td>
 			    </tr>
@@ -99,7 +114,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 			      <button type="button" class="close" data-dismiss="modal">&times;</button>
 			      <h4 class="modal-title">Modal Header</h4>
 			    </div>
-			    <div class="modal-body">
+			    <div id = "algo" class="modal-body">
 			      <p>Some text in the modal.</p>
 			    </div>
 			    <div class="modal-footer">
