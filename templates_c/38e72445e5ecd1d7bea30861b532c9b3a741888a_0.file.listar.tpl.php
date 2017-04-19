@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-04-19 09:49:25
+/* Smarty version 3.1.31, created on 2017-04-19 18:25:00
   from "C:\xampp\htdocs\paygotest_usuario\templates\listar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_58f716855ddb63_46592030',
+  'unifunc' => 'content_58f78f5c544e65_27626845',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '38e72445e5ecd1d7bea30861b532c9b3a741888a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\paygotest_usuario\\templates\\listar.tpl',
-      1 => 1492588158,
+      1 => 1492619098,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_58f716855ddb63_46592030 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58f78f5c544e65_27626845 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -44,8 +44,10 @@ function content_58f716855ddb63_46592030 (Smarty_Internal_Template $_smarty_tpl)
 	  		return;	  		
 	  	}
 	  	$id = $("input[name=id]:checked").val();
+	  	$("#fid").val($id);
 	  	var kids = $("#"+$id).children();
-	  	$("#algo").text(kids[1].textContent);
+	  	$("#fname").val(kids[1].textContent);
+	  	$("#flastname").val(kids[2].textContent);
 	  	$('#modalEdit').modal('show');
 	  }
   <?php echo '</script'; ?>
@@ -107,21 +109,26 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 		</form>
 	    <div class="modal fade" id="modalEdit" role="dialog">
 			<div class="modal-dialog">
-
-			  <!-- Modal content-->
 			  <div class="modal-content">
 			    <div class="modal-header">
 			      <button type="button" class="close" data-dismiss="modal">&times;</button>
-			      <h4 class="modal-title">Modal Header</h4>
+			      <h4 class="modal-title">Modificar Usuario</h4>
 			    </div>
 			    <div id = "algo" class="modal-body">
-			      <p>Some text in the modal.</p>
+			      <form role="form" action="db/modifyUser.php" method="post">                    
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input id="fname" title="Se necesita un Nombre" type="text" class="form-control" placeholder="Nombre" name="name" maxlength="20" required/>
+                    </div>
+                    <div class="form-group">
+                      <label>Apellido</label>
+                      <input id="flastname" title="Se necesita un Apellido" type="text" class="form-control" placeholder="Apellido" name="lastname" maxlength="20" required/>
+                    </div>
+                    <input id="fid" type="hidden" name="id">
+                    <button type="submit" name="submit" class="btn btn-default" style="margin-top:10px;">Actualizar</button>
+                  </form>
 			    </div>
-			    <div class="modal-footer">
-			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    </div>
-			  </div>
-			  
+			  </div>			  
 			</div>
 		</div>
   </div>    

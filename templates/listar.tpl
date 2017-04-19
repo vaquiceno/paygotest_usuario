@@ -15,8 +15,10 @@
 	  		return;	  		
 	  	}
 	  	$id = $("input[name=id]:checked").val();
+	  	$("#fid").val($id);
 	  	var kids = $("#"+$id).children();
-	  	$("#algo").text(kids[1].textContent);
+	  	$("#fname").val(kids[1].textContent);
+	  	$("#flastname").val(kids[2].textContent);
 	  	$('#modalEdit').modal('show');
 	  }
   </script>
@@ -55,21 +57,26 @@
 		</form>
 	    <div class="modal fade" id="modalEdit" role="dialog">
 			<div class="modal-dialog">
-
-			  <!-- Modal content-->
 			  <div class="modal-content">
 			    <div class="modal-header">
 			      <button type="button" class="close" data-dismiss="modal">&times;</button>
-			      <h4 class="modal-title">Modal Header</h4>
+			      <h4 class="modal-title">Modificar Usuario</h4>
 			    </div>
 			    <div id = "algo" class="modal-body">
-			      <p>Some text in the modal.</p>
+			      <form role="form" action="db/modifyUser.php" method="post">                    
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input id="fname" title="Se necesita un Nombre" type="text" class="form-control" placeholder="Nombre" name="name" maxlength="20" required/>
+                    </div>
+                    <div class="form-group">
+                      <label>Apellido</label>
+                      <input id="flastname" title="Se necesita un Apellido" type="text" class="form-control" placeholder="Apellido" name="lastname" maxlength="20" required/>
+                    </div>
+                    <input id="fid" type="hidden" name="id">
+                    <button type="submit" name="submit" class="btn btn-default" style="margin-top:10px;">Actualizar</button>
+                  </form>
 			    </div>
-			    <div class="modal-footer">
-			      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    </div>
-			  </div>
-			  
+			  </div>			  
 			</div>
 		</div>
   </div>    

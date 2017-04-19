@@ -61,6 +61,18 @@ class Database{
         }        
     }
 
+    public function ModifyUniqueUser($id, $name, $lastname){
+        try {
+            $stmt = $this->conn->prepare("UPDATE user SET name=:name, lastname=:lastname WHERE id=:id");
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':lastname', $lastname);
+            $stmt->execute();
+        } catch(PDOException $e) {
+            die("Ocurrio el siguiente error al procesar la transaccion: " . $e->getMessage());
+        }     
+    }
+
     public function DeleteUserData(){
         try {
             $stmt = $this->conn->prepare("DELETE from user");
