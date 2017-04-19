@@ -32,9 +32,8 @@
 	    </div>
 	  </div> 
 	  <div class="form-group">
-	    <div class="col-sm-offset-5 col-sm-2">
-	      <button type="submit" name="submit" class="btn btn-default" style="width:100%;">Procesar</button>
-	    </div>
+		<button type="submit" name="submit" class="col-xs-2 col-xs-offset-2 btn btn-default">Procesar</button>
+	    <a class="col-xs-2 col-xs-offset-4 btn btn-default" href="/paygotest_usuario/listar.php">Listado anterior</a>
 	  </div>
 	</form>
   </div>    

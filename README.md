@@ -14,4 +14,6 @@ Se asume que el ordenamiento se realiza sobre el campo "Nombre".
 
 Se crea una clase llamada Database.php que maneja el acceso a la tabla user usando la libreria PDO de php.
 
+Se usa el motor de plantillas smarty para renderizar las vistas.
 
+Se crean botones que enlazan las dos vistas entre si (Listado anterior y Cargar nuevo CVS).
