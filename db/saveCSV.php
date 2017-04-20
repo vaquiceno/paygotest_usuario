@@ -6,6 +6,12 @@ if(!isset($_POST["submit"])) {
 if(!isset($_POST["number"])) {
 	die("No estableció el parametro Número de Registros");
 }
+if(!isset($_POST["separator"])) {
+	die("No estableció el parametro Separador");
+}
+if(!isset($_POST["option"])) {
+	die("No estableció el parametro de ordenamiento");
+}
 //reconocer si es un .csv
 $type = explode(".",$_FILES['file']['name']);
 if(strtolower(end($type)) !== 'csv'){
@@ -21,13 +27,16 @@ if (($gestor = fopen($target_file, "r")) == FALSE) {
 $arr_name = array();
 $arr_lastname = array();
 $arr = array();	
-while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) {
-	$name = trim($datos[0]);
-	$lastname = trim($datos[1]);
-	if ($name !== "" && $lastname !== ""){
-		array_push($arr_name, $datos[0]);
-		array_push($arr_lastname, $datos[1]);
-		array_push($arr, $datos);		
+$separator = ($_POST["separator"] === "PC") ? ";" : ",";
+while (($datos = fgetcsv($gestor, 1000, $separator)) !== FALSE) {
+	if (count($datos) >= 2){
+		$name = trim($datos[0]);
+		$lastname = trim($datos[1]);
+		if ($name !== "" && $lastname !== ""){
+			array_push($arr_name, $datos[0]);
+			array_push($arr_lastname, $datos[1]);
+			array_push($arr, $datos);		
+		}		
 	}
 }
 fclose($gestor);				 

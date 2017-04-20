@@ -8,6 +8,8 @@ Se ha usado php sin ningún framework de backend.
 
 Se ha usado una tabla en mysql para la persistencia de los datos.
 
+La aplicación soporta archivos separados por comas (,) y por punto y coma (;), como los formatos de los archivos de ejemplo CSV_Coma y CSV_PuntoComa
+
 Cuando el archivo csv se sube, es leido por el servidor y luego se ordena en memoria. Se procede luego a insertar los registros ordenados en la tabla. Cuando un nuevo archivo csv es cargado, se borra los datos de la tabla mysql.
 
 Se asume que el ordenamiento se realiza sobre el campo "Nombre".

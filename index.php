@@ -32,8 +32,15 @@
 	    </div>
 	  </div> 
 	  <div class="form-group">
-		<button type="submit" name="submit" class="col-xs-2 col-xs-offset-2 btn btn-default">Procesar</button>
-	    <a class="col-xs-2 col-xs-offset-4 btn btn-default" href="/paygotest_usuario/listar.php">Listado anterior</a>
+	  	<label class="col-sm-1 control-label">Separador:</label>
+	  	<div class="col-xs-3">
+	      	<select class="form-control" name="separator" required>
+	     	 	<option value="C">Coma</option>
+	     	 	<option value="PC">Punto y Coma</option>
+			</select>
+	    </div>
+		<button type="submit" name="submit" class="col-xs-3 col-xs-offset-1 btn btn-default">Procesar</button>
+	    <a class="col-xs-3 col-xs-offset-1 btn btn-default" href="/paygotest_usuario/listar.php">Listado anterior</a>
 	  </div>
 	</form>
   </div>    
