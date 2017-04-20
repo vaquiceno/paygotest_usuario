@@ -18,15 +18,28 @@ class Database{
             PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
-        // Create a new PDO instanace
-        try{
-            $this->conn = new PDO($dsn, $this->user, $this->pass, $options);
-        }
-        // Catch any errors
-        catch(PDOException $e){
-            die("Ocurrio el siguiente error al conectarse a la base de datos: " . $e->getMessage());
+        $limit = 10;
+        $counter = 0;
+        // Create a new PDO instance
+        while (true){
+            try{
+                set_error_handler(array($this, 'errHandler'));
+                $this->conn = new PDO($dsn, $this->user, $this->pass, $options);
+                restore_error_handler();
+                break;
+            }
+            // Catch any errors
+            catch(PDOException $e){
+                echo "error $counter";
+                $this->conn = null;
+                $counter++;
+                if ($counter == $limit)
+                    throw $e;
+            }
         }
     }
+
+    public function errHandler($errno, $errstr){}
 
     public function InsertUserDataCSV($arr, $number){
         try {

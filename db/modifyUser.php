@@ -17,7 +17,7 @@ require("database.php");
 
 $database = new Database(); 
 
-$database->ModifyUniqueUser($_POST["id"], $_POST["name"], $_POST["lastname"]);
+$database->ModifyUniqueUser(trim($_POST["id"]), trim($_POST["name"]), trim($_POST["lastname"]));
 
 //redirigir a la vista de listar usuarios
 header('Location: '.$_SERVER['HTTP_REFERER']); 
