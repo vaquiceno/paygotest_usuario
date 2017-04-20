@@ -49,12 +49,26 @@ class Database{
         }        
     }
 
-    public function SelectUserData(){
+    public function SelectUserData($pg, $nreg){
         try {
+            $offset = ($pg-1)*$nreg;
             $this->conn->exec("SET NAMES utf8");
-            $stmt = $this->conn->prepare("SELECT * FROM user");
+            $stmt = $this->conn->prepare("SELECT * FROM user where 1=1 LIMIT :offset, :nreg");
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            $stmt->bindParam(':nreg', $nreg, PDO::PARAM_INT);
             $stmt->execute();
             $resultado = $stmt->fetchAll();
+            return $resultado;
+        } catch(PDOException $e) {
+            die("Ocurrio el siguiente error al procesar la transaccion: " . $e->getMessage());
+        }        
+    }
+
+    public function GetLengthUser(){
+        try {
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM user where 1=1");
+            $stmt->execute();
+            $resultado = $stmt->fetchColumn();
             return $resultado;
         } catch(PDOException $e) {
             die("Ocurrio el siguiente error al procesar la transaccion: " . $e->getMessage());

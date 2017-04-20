@@ -20,6 +20,6 @@ $database = new Database();
 $database->ModifyUniqueUser($_POST["id"], $_POST["name"], $_POST["lastname"]);
 
 //redirigir a la vista de listar usuarios
-header("Location: /paygotest_usuario/listar.php");
+header('Location: '.$_SERVER['HTTP_REFERER']); 
 
 ?>

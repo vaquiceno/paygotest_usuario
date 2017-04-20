@@ -14,6 +14,6 @@ $database = new Database();
 $database->DeleteUniqueUser($_POST["id"]);
 
 //redirigir a la vista de listar usuarios
-header("Location: /paygotest_usuario/listar.php");
+header('Location: '.$_SERVER['HTTP_REFERER']); 
 
 ?>

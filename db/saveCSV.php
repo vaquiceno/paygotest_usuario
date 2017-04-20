@@ -22,9 +22,13 @@ $arr_name = array();
 $arr_lastname = array();
 $arr = array();	
 while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) {
-	array_push($arr_name, $datos[0]);
-	array_push($arr_lastname, $datos[1]);
-	array_push($arr, $datos);
+	$name = trim($datos[0]);
+	$lastname = trim($datos[1]);
+	if ($name !== "" && $lastname !== ""){
+		array_push($arr_name, $datos[0]);
+		array_push($arr_lastname, $datos[1]);
+		array_push($arr, $datos);		
+	}
 }
 fclose($gestor);				 
 //ordenamiento natural sobre el campo nombre segun la opcion elegida

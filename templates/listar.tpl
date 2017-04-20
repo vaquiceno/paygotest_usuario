@@ -8,20 +8,8 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-	  function getId(){
-	  	if ($("input[name=id]:checked").val() == undefined){
-	  		alert("selecciona una opción primero");
-	  		return;	  		
-	  	}
-	  	$id = $("input[name=id]:checked").val();
-	  	$("#fid").val($id);
-	  	var kids = $("#"+$id).children();
-	  	$("#fname").val(kids[1].textContent);
-	  	$("#flastname").val(kids[2].textContent);
-	  	$('#modalEdit').modal('show');
-	  }
-  </script>
+  <script src="js/jquery.twbsPagination.min.js"></script>
+
 </head>
 <body style="padding-top: 60px;">
 
@@ -53,8 +41,12 @@
 			    </tr>
 			{/foreach}
 		    </tbody>
-		  </table>
+		  </table>		  
 		</form>
+		<div class="text-center">
+			<ul id="pagination-demo" class="pagination-lg"></ul>
+		</div>
+		
 	    <div class="modal fade" id="modalEdit" role="dialog">
 			<div class="modal-dialog">
 			  <div class="modal-content">
@@ -81,6 +73,32 @@
 		</div>
   </div>    
 </div>
+
+  <script type="text/javascript">
+	  function getId(){
+	  	if ($("input[name=id]:checked").val() == undefined){
+	  		alert("selecciona una opción primero");
+	  		return;	  		
+	  	}
+	  	$id = $("input[name=id]:checked").val();
+	  	$("#fid").val($id);
+	  	var kids = $("#"+$id).children();
+	  	$("#fname").val(kids[1].textContent);
+	  	$("#flastname").val(kids[2].textContent);
+	  	$('#modalEdit').modal('show');
+	  }
+	  $('#pagination-demo').twbsPagination({
+	        totalPages: {$npg},
+	        visiblePages: 7,
+	        startPage: {$pg},
+	        initiateStartPageClick: false,
+	        onPageClick: function (event, page) {
+	            $('#page-content').text('Page ' + page);
+	            // se redirige a la nueva pagina con un parametro en la url
+	            window.location.replace("/paygotest_usuario/listar.php?page="+page);
+	        }
+	    });
+	</script>
 
 </body>
 </html>
