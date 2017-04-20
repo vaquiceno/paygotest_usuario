@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-04-20 02:05:01
+/* Smarty version 3.1.31, created on 2017-04-20 06:30:23
   from "C:\xampp\htdocs\paygotest_usuario\templates\listar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_58f7fb2dbf6333_35390798',
+  'unifunc' => 'content_58f8395f07bc74_16007397',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '38e72445e5ecd1d7bea30861b532c9b3a741888a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\paygotest_usuario\\templates\\listar.tpl',
-      1 => 1492646693,
+      1 => 1492662621,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_58f7fb2dbf6333_35390798 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58f8395f07bc74_16007397 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -147,6 +147,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 	        startPage: <?php echo $_smarty_tpl->tpl_vars['pg']->value;?>
 ,
 	        initiateStartPageClick: false,
+	        first: "Primero",
+	        prev: "Anterior",
+	        next: "Siguiente",
+	        last: "Último",
 	        onPageClick: function (event, page) {
 	            $('#page-content').text('Page ' + page);
 	            // se redirige a la nueva pagina con un parametro en la url

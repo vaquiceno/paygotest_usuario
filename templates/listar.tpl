@@ -92,6 +92,10 @@
 	        visiblePages: 7,
 	        startPage: {$pg},
 	        initiateStartPageClick: false,
+	        first: "Primero",
+	        prev: "Anterior",
+	        next: "Siguiente",
+	        last: "Último",
 	        onPageClick: function (event, page) {
 	            $('#page-content').text('Page ' + page);
 	            // se redirige a la nueva pagina con un parametro en la url
